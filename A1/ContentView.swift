@@ -34,7 +34,6 @@ struct ContentView: View {
                         .foregroundColor(.green)
                     }
                     .padding([.top, .leading])
-                    
                 }
             }
             .listStyle(.plain)
