@@ -10,8 +10,8 @@ import SwiftUI
 let items = [
     ["Item 1", "checkmark"],
     [ "Item 2", "checkmark"],
-    ["Item 3", ""],
-    [ "Item 4",""]
+    ["Item 3", " "],
+    [ "Item 4"," "]
 ]
 
 struct ContentView: View {
