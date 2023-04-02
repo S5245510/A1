@@ -14,29 +14,34 @@ let items = [
     [ "Item 4"," "]
 ]
 
+
 struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
+                Text("CheckList")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .padding()
                 ForEach(items, id:\.self){ item in
                     HStack {
                         Text(item[0])
+                        .font(.title2)
+                        .fontWeight(.semibold)
                         Spacer()
                         Image(systemName:item[1])
+                        .foregroundColor(.green)
                     }
-                }.navigationTitle("CheckList")
-            }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("Checklist")
+                    .padding([.top, .leading])
+                    
                 }
             }
-            
-            
+            .listStyle(.plain)
+            .navigationTitle("Checklist")
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
