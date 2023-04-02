@@ -14,6 +14,8 @@
 		AD265CDE29D9417100395E64 /* A1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CDD29D9417100395E64 /* A1Tests.swift */; };
 		AD265CE829D9417100395E64 /* A1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CE729D9417100395E64 /* A1UITests.swift */; };
 		AD265CEA29D9417100395E64 /* A1UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CE929D9417100395E64 /* A1UITestsLaunchTests.swift */; };
+		AD265CF629D9465500395E64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CCD29D9416F00395E64 /* ContentView.swift */; };
+		AD265CF729D9465600395E64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CCD29D9416F00395E64 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,7 +104,7 @@
 				AD265CD229D9417100395E64 /* Preview Content */,
 			);
 			path = A1;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		AD265CD229D9417100395E64 /* Preview Content */ = {
 			isa = PBXGroup;
@@ -268,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD265CF629D9465500395E64 /* ContentView.swift in Sources */,
 				AD265CDE29D9417100395E64 /* A1Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +281,7 @@
 			files = (
 				AD265CEA29D9417100395E64 /* A1UITestsLaunchTests.swift in Sources */,
 				AD265CE829D9417100395E64 /* A1UITests.swift in Sources */,
+				AD265CF729D9465600395E64 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

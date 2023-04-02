@@ -24,16 +24,19 @@ struct ContentView: View {
                         Spacer()
                         Image(systemName:item[1])
                     }
-                }
+                }.navigationTitle("CheckList")
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Checklist")
                 }
             }
+            
+            
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
