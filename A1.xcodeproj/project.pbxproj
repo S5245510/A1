@@ -16,6 +16,10 @@
 		AD265CEA29D9417100395E64 /* A1UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CE929D9417100395E64 /* A1UITestsLaunchTests.swift */; };
 		AD265CF629D9465500395E64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CCD29D9416F00395E64 /* ContentView.swift */; };
 		AD265CF729D9465600395E64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CCD29D9416F00395E64 /* ContentView.swift */; };
+		AD5EAE4C29E6D7E400FDB5C1 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EAE4B29E6D7E400FDB5C1 /* ItemDetailView.swift */; };
+		AD5EAE4E29E6D81C00FDB5C1 /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EAE4D29E6D81C00FDB5C1 /* EditItemView.swift */; };
+		AD5EAE5029E6DC0900FDB5C1 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EAE4F29E6DC0900FDB5C1 /* ChecklistViewModel.swift */; };
+		AD5EAE5229E6E62300FDB5C1 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EAE5129E6E62300FDB5C1 /* ChecklistItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		AD265CE329D9417100395E64 /* A1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD265CE729D9417100395E64 /* A1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A1UITests.swift; sourceTree = "<group>"; };
 		AD265CE929D9417100395E64 /* A1UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A1UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AD5EAE4B29E6D7E400FDB5C1 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		AD5EAE4D29E6D81C00FDB5C1 /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
+		AD5EAE4F29E6DC0900FDB5C1 /* ChecklistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewModel.swift; sourceTree = "<group>"; };
+		AD5EAE5129E6E62300FDB5C1 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,10 @@
 		AD265CCA29D9416F00395E64 /* A1 */ = {
 			isa = PBXGroup;
 			children = (
+				AD5EAE5129E6E62300FDB5C1 /* ChecklistItem.swift */,
+				AD5EAE4F29E6DC0900FDB5C1 /* ChecklistViewModel.swift */,
+				AD5EAE4D29E6D81C00FDB5C1 /* EditItemView.swift */,
+				AD5EAE4B29E6D7E400FDB5C1 /* ItemDetailView.swift */,
 				AD265CCB29D9416F00395E64 /* A1App.swift */,
 				AD265CCD29D9416F00395E64 /* ContentView.swift */,
 				AD265CCF29D9417100395E64 /* Assets.xcassets */,
@@ -261,8 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD5EAE4C29E6D7E400FDB5C1 /* ItemDetailView.swift in Sources */,
+				AD5EAE5229E6E62300FDB5C1 /* ChecklistItem.swift in Sources */,
+				AD5EAE4E29E6D81C00FDB5C1 /* EditItemView.swift in Sources */,
 				AD265CCE29D9416F00395E64 /* ContentView.swift in Sources */,
 				AD265CCC29D9416F00395E64 /* A1App.swift in Sources */,
+				AD5EAE5029E6DC0900FDB5C1 /* ChecklistViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +455,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = s5245510.A1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -475,7 +493,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = s5245510.A1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

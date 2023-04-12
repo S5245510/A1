@@ -7,37 +7,37 @@
 
 import SwiftUI
 
-let items = [
-    ["Item 1", "checkmark"],
-    [ "Item 2", "checkmark"],
-    ["Item 3", " "],
-    [ "Item 4"," "]
-]
-
-
 struct ContentView: View {
+    @ObservedObject var viewModel = ChecklistViewModel()
+    @State var isEditMode = false
+    
     var body: some View {
         NavigationView {
             List {
-                Text("CheckList")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .padding()
-                ForEach(items, id:\.self){ item in
-                    HStack {
-                        Text(item[0])
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        Spacer()
-                        Image(systemName:item[1])
-                        .foregroundColor(.green)
+                ForEach(viewModel.items) { item in
+                    NavigationLink(
+                        destination: ItemDetailView(viewModel: viewModel, item: item)) {
+                        HStack {
+                            Text(item.name)
+                            Spacer()
+                            Image(systemName: item.isChecked ? "checkmark" : "")
+                        }
                     }
-                    .padding([.top, .leading])
+                }
+                .onDelete(perform: viewModel.deleteItems)
+            }
+            .navigationTitle(Text("Checklist"))
+            .toolbar {
+                ToolbarItemGroup(placement: .automatic) {
+                    Button(action: { isEditMode.toggle() }) {
+                        Text(isEditMode ? "Done" : "Edit")
+                    }
+                    Button(action: viewModel.addItem) {
+                        Image(systemName: "plus")
+                    }
                 }
             }
-            .listStyle(.plain)
-            .navigationTitle("Checklist")
+            .environment(\.editMode, isEditMode ? .constant(.active) : .constant(.inactive))
         }
     }
 }
