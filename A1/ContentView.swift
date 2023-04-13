@@ -28,7 +28,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: viewModel.deleteItems)
             }
-            .navigationTitle(Text(checklistTitle))
+            //.navigationTitle(Text(checklistTitle))
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     if isEditMode {
@@ -36,9 +36,19 @@ struct ContentView: View {
                             .font(.headline)
                             .bold()
                             .foregroundColor(.red)
+                    }else {
+                        if !editTitle.isEmpty{
+                            Text(editTitle)
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                            
+                        }
+                        else {
+                            Text(checklistTitle)       .font(.headline)
+                                .foregroundColor(.primary)
+                        }
                     }
                 }
-            
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: { isEditMode.toggle() }) {
                         Text(isEditMode ? "Done" : "Edit")
