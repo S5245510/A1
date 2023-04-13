@@ -11,6 +11,7 @@ struct ContentView: View {
     @ObservedObject var viewModel = ChecklistViewModel()
     @State var isEditMode = false
     @State var checklistTitle = "Checklist"
+    @State var editTitle = ""
     
     var body: some View {
         NavigationView {
@@ -31,13 +32,10 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     if isEditMode {
-                        TextField("Edit title here", text: $checklistTitle).textFieldStyle(isEditMode?.wrappedValue == .active ? PlainTextFieldStyle() : RoundedBorderTextFieldStyle())
+                        TextField("Edit title here", text: $editTitle)
                             .font(.headline)
-                            .foregroundColor(.primary)
-                    } else {
-                        Text(checklistTitle)
-                            .font(.headline)
-                            .foregroundColor(.primary)
+                            .bold()
+                            .foregroundColor(.red)
                     }
                 }
             
