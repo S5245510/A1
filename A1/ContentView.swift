@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel = ChecklistViewModel()
     @State var isEditMode = false
+    @State var checklistTitle = "Checklist"
     
     var body: some View {
         NavigationView {
@@ -26,9 +27,21 @@ struct ContentView: View {
                 }
                 .onDelete(perform: viewModel.deleteItems)
             }
-            .navigationTitle(Text("Checklist"))
+            .navigationTitle(Text(checklistTitle))
             .toolbar {
-                ToolbarItemGroup(placement: .automatic) {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    if isEditMode {
+                        TextField("Edit title here", text: $checklistTitle).textFieldStyle(isEditMode?.wrappedValue == .active ? PlainTextFieldStyle() : RoundedBorderTextFieldStyle())
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                    } else {
+                        Text(checklistTitle)
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                    }
+                }
+            
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: { isEditMode.toggle() }) {
                         Text(isEditMode ? "Done" : "Edit")
                     }
@@ -41,6 +54,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
