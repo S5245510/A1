@@ -9,32 +9,39 @@ import SwiftUI
 struct ItemDetailView: View {
     @ObservedObject var viewModel: ChecklistViewModel
     let item: ChecklistItem
+    @State var isEditMode = false
     
-    @State private var isShowingEditView = false
     
     var body: some View {
-        VStack {
-            Text(item.name)
-                .font(.title)
-            Spacer()
-            Text("Status: \(item.isChecked ? "Checked" : "Unchecked")")
-            Spacer()
+        List{
+            VStack {
+                Text(item.name)
+                    .font(.title)
+                    
+                Spacer()
+            }
+            VStack(alignment: .leading) {
+                Text("Item Detail")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+            }
         }
-        Text("Item Detail")
-            .font(.headline)
-            .fontWeight(.bold)
         .toolbar {
-            ToolbarItemGroup() {
-                Button(action: { isShowingEditView.toggle() }) {
-                    Text("Edit")
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: { isEditMode.toggle() }) {
+                    Text(isEditMode ? "Done" : "Edit")
+                }
+                Button(action: viewModel.addItem) {
+                    Image(systemName: "plus")
                 }
             }
         }
-        .sheet(isPresented: $isShowingEditView) {
-            EditItemView(viewModel: viewModel, item: item)
+        .environment(\.editMode, isEditMode ? .constant(.active) : .constant(.inactive))
         }
+
     }
-}
+
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {

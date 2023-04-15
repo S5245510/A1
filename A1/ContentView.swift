@@ -28,7 +28,6 @@ struct ContentView: View {
                 }
                 .onDelete(perform: viewModel.deleteItems)
             }
-            //.navigationTitle(Text(checklistTitle))
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     if isEditMode {
