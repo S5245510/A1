@@ -13,11 +13,9 @@ class ChecklistViewModel: ObservableObject {
             ChecklistItem(name: "Exercise", isChecked: false, detail: "Go for a gym")
         ]
         
-        init() {
-        }
     
-    func addItem(_ newItem: ChecklistItem) {
-        
+    func addItem() {
+        let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
         items.append(newItem)
     }
         

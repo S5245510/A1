@@ -16,17 +16,16 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.items.indices) { index in
-                    let item = viewModel.items[index]
+                ForEach(viewModel.items, id: \.id) { item in
                     NavigationLink(
-                        destination: ItemDetailView(viewModel: viewModel, item: viewModel.items[index])) {
+                        destination: ItemDetailView(viewModel: viewModel, item: item)) {
                         HStack {
                             if isEditMode{
-                                TextField("Item Name", text: $viewModel.items[index].name)
+                                TextField("Item Name", text: $viewModel.items[viewModel.items.firstIndex(of: item)!].name)
                                     .font(.headline)
                                     .foregroundColor(.primary)
-                                Toggle("", isOn: $viewModel.items[index].isChecked)
-                                                        .labelsHidden()                            }else {
+                                Toggle("", isOn: $viewModel.items[viewModel.items.firstIndex(of: item)!].isChecked)
+                                .labelsHidden()                            }else {
                                 Text(item.name)
                                 Spacer()
                                 Image(systemName: item.isChecked ? "checkmark" : "")
@@ -61,8 +60,7 @@ struct ContentView: View {
                         Text(isEditMode ? "Done" : "Edit")
                     }
                     Button(action:{
-                        let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
-                        viewModel.addItem(newItem)
+                        viewModel.addItem()
                     }){
                     Image(systemName: "plus")
                     }
