@@ -43,7 +43,7 @@ struct EditItemView: View {
 struct EditItemView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = ChecklistViewModel()
-        let item = ChecklistItem(name: "Test Item")
+        let item = ChecklistItem(name: "Test Item", detail:"item details")
         EditItemView(viewModel: viewModel, item: item)
     }
 }

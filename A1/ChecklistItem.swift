@@ -12,4 +12,5 @@ struct ChecklistItem : Identifiable, Equatable{
     let id = UUID()
     var name: String
     var isChecked: Bool = false
+    var detail: String
 }

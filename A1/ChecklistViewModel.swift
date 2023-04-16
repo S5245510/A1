@@ -10,7 +10,7 @@ class ChecklistViewModel: ObservableObject {
     
     
     func addItem() {
-        let newItem = ChecklistItem(name: "New Item")
+        let newItem = ChecklistItem(name: "New Item", detail: "item detail")
             items.append(newItem)
         }
         
