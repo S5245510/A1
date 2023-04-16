@@ -8,54 +8,69 @@ import SwiftUI
 
 struct ItemDetailView: View {
     @ObservedObject var viewModel: ChecklistViewModel
-    @State var isEditMode = false
-    @State var editTitle = ""
+    let item: ChecklistItem
     
+    @State private var isEditMode = false
+    @State private var itemName = ""
+    @State private var itemDetails = ""
+    
+    init(viewModel: ChecklistViewModel, item: ChecklistItem) {
+        self.viewModel = viewModel
+        self.item = item
+        self._itemName = State(initialValue: item.name)
+        self._itemDetails = State(initialValue: item.detail)
+    }
     
     var body: some View {
-        NavigationView {
-            List{
-                VStack {
-                    Text(viewModel.items.name)
-                        .font(.title)
-                    
-                    Spacer()
-                }
-                VStack(alignment: .leading) {
-                    Text("Item Detail")
+        VStack(alignment: .center, spacing: 20) {
+            if isEditMode{
+                TextField("Item Name", text: $itemName)
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                    .bold()
+                    .foregroundColor(.red)
+                Divider()
+                TextField("Item Details", text: $itemDetails)
+                    .font(.headline)
+                    .foregroundColor(.red)
+                    .padding(.horizontal)
+                
+                Spacer()
+                
+            }else{
+                Text(item.name)
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                    .bold()
+                Divider()
+                VStack(alignment: .leading){
+                    Text(item.detail)
                         .font(.headline)
-                        .fontWeight(.bold)
+                        .padding(.horizontal)
                     
-                }
-                //.onDelete(perform: viewModel.deleteItems)
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                Spacer()
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    if isEditMode {
-                        TextField("Edit title here", text:viewModel.items.name) //$editTitle)
-                            .font(.headline)
-                            .bold()
-                            .foregroundColor(.red)
-                    }
-                        else {
-                            Text(viewModel.items.name)       .font(.headline)
-                                .foregroundColor(.primary)
-                        }
-                    
-                }
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: { isEditMode.toggle() }) {
-                        Text(isEditMode ? "Done" : "Edit")
-                    }
-                    Button(action: viewModel.addItem) {
-                        Image(systemName: "plus")
-                    }
+        }
+        .navigationTitle(item.name)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: {
+                    isEditMode.toggle()
+                }) {
+                    Text(isEditMode ? "Done" : "Edit")
                 }
             }
-            .environment(\.editMode, isEditMode ? .constant(.active) : .constant(.inactive))
+        }
+        .onChange(of: isEditMode) { value in
+            if !value {
+                viewModel.editItem(item: item, name: itemName)
+                viewModel.editDetail(item: item, detail: itemDetails)
+            }
         }
     }
 }
+
 
 
 struct ItemDetailView_Previews: PreviewProvider {

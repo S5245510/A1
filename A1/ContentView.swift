@@ -10,19 +10,27 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel = ChecklistViewModel()
     @State var isEditMode = false
-    @State var checklistTitle = "Checklist"
+    @State var checklistTitle = "Today routine"
     @State var editTitle = ""
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.items) { item in
+                ForEach(viewModel.items.indices) { index in
+                    let item = viewModel.items[index]
                     NavigationLink(
-                        destination: ItemDetailView(viewModel: viewModel, item: item)) {
+                        destination: ItemDetailView(viewModel: viewModel, item: viewModel.items[index])) {
                         HStack {
-                            Text(item.name)
-                            Spacer()
-                            Image(systemName: item.isChecked ? "checkmark" : "")
+                            if isEditMode{
+                                TextField("Item Name", text: $viewModel.items[index].name)
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                Toggle("", isOn: $viewModel.items[index].isChecked)
+                                                        .labelsHidden()                            }else {
+                                Text(item.name)
+                                Spacer()
+                                Image(systemName: item.isChecked ? "checkmark" : "")
+                            }
                         }
                     }
                 }
@@ -52,8 +60,11 @@ struct ContentView: View {
                     Button(action: { isEditMode.toggle() }) {
                         Text(isEditMode ? "Done" : "Edit")
                     }
-                    Button(action: viewModel.addItem) {
-                        Image(systemName: "plus")
+                    Button(action:{
+                        let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
+                        viewModel.addItem(newItem)
+                    }){
+                    Image(systemName: "plus")
                     }
                 }
             }
