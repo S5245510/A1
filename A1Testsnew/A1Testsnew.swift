@@ -1,26 +1,52 @@
 //
-//  A1Tests_items_and_function.swift
-//  A1Tests-items and function
+//  A1Testsnew.swift
+//  A1Testsnew
 //
-//  Created by Tsz Hoi Leung on 07/4/2023.
+//  Created by Tsz Hoi Leung on 17/4/2023.
 //
-
-@testable import A1
 
 import XCTest
+@testable import A1
 
-final class A1Tests_items_and_function: XCTestCase {
+final class A1Testsnew: XCTestCase {
     
     func testAddItem() {
-        // Given
+        
         let viewModel = ChecklistViewModel()
         let initialCount = viewModel.items.count
         
-        // When
         viewModel.addItem()
         
-        // Then
         XCTAssertEqual(viewModel.items.count, initialCount + 1)
+    }
+    
+    func testDeleteItem() {
+        
+           let viewModel = ChecklistViewModel()
+           let itemToDelete = viewModel.items[0]
+
+           viewModel.deleteItems(at: IndexSet([0]))
+
+           XCTAssertFalse(viewModel.items.contains(itemToDelete))
+       }
+    
+    func testContentView() {
+
+        let viewModel = ChecklistViewModel()
+        let contentView = ContentView(viewModel: viewModel)
+        
+
+        XCTAssertNotNil(contentView)
+    }
+    
+    func testItemDetailView() {
+
+        let viewModel = ChecklistViewModel()
+        let item = ChecklistItem(name: "Test Item", isChecked: false, detail: "Test Detail")
+        let itemDetailView = ItemDetailView(viewModel: viewModel, item: item)
+        
+
+        XCTAssertNotNil(itemDetailView)
     }
 
 

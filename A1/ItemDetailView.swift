@@ -2,6 +2,8 @@
 //  ItemDetailView.swift
 //  A1
 //
+//  Created by Tsz Hoi Leung on 02/04/2023.
+//
 
 
 import SwiftUI
@@ -9,10 +11,12 @@ import SwiftUI
 struct ItemDetailView: View {
     @ObservedObject var viewModel: ChecklistViewModel
     let item: ChecklistItem
+
     
     @State private var isEditMode = false
     @State private var itemName = ""
     @State private var itemDetails = ""
+    
     
     init(viewModel: ChecklistViewModel, item: ChecklistItem) {
         self.viewModel = viewModel
@@ -34,6 +38,8 @@ struct ItemDetailView: View {
                     .font(.headline)
                     .foregroundColor(.red)
                     .padding(.horizontal)
+                Text("Edit mode is on, Please select details and title to edit")
+                    .foregroundColor(.gray)
                 
                 Spacer()
                 
