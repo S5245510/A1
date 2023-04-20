@@ -1,0 +1,25 @@
+[
+    {
+        "id": "1",
+        "name": "Buy groceries",
+        "isChecked": true,
+        "detail": "Rice, Milk, Egg"
+    },
+    {
+        "id": "2",
+        "name": "Study",
+        "isChecked": true,
+        "detail": "Revision"
+    },
+    {
+        "id": "3",
+        "name": "Clean house",
+        "isChecked": false,
+        "detail": "Sweep floors"
+    },
+    {
+        "id": "4",
+        "name": "Exercise",
+        "isChecked": false,
+        "detail": "Go for a gym"
+    }
