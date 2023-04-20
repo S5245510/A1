@@ -25,7 +25,8 @@ struct ContentView: View {
                                     .font(.headline)
                                     .foregroundColor(.primary)
                                 Toggle("", isOn: $viewModel.items[viewModel.items.firstIndex(of: item)!].isChecked)
-                                .labelsHidden()                            }else {
+                                .labelsHidden()
+                            }else {
                                 Text(item.name)
                                 Spacer()
                                 Image(systemName: item.isChecked ? "checkmark" : "")
@@ -47,10 +48,10 @@ struct ContentView: View {
                             Text(editTitle)
                                 .font(.headline)
                                 .foregroundColor(.primary)
-                            
                         }
                         else {
-                            Text(checklistTitle)       .font(.headline)
+                            Text(checklistTitle)
+                                .font(.headline)
                                 .foregroundColor(.primary)
                         }
                     }
@@ -62,15 +63,17 @@ struct ContentView: View {
                     Button(action:{
                         viewModel.addItem()
                     }){
-                    Image(systemName: "plus")
+                        Image(systemName: "plus")
                     }
                 }
             }
             .environment(\.editMode, isEditMode ? .constant(.active) : .constant(.inactive))
         }
+        .onAppear {
+            viewModel.loadItems()
+        }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
