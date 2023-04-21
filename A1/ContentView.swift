@@ -14,11 +14,12 @@ struct ContentView: View {
     @State var isEditMode = false
     @State var checklistTitle = "Today routine"
     @State var editTitle = ""
+    @State var isLoading = false
     
     var body: some View {
         NavigationView {
             Group {
-                if viewModel.isLoading {
+                if isLoading {
                     loadView()
                 } else {
                     List {
@@ -96,7 +97,11 @@ struct ContentView: View {
         }
         // will load items every time this view present
         .onAppear {
-            viewModel.loadItems()
+            isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                viewModel.loadItems()
+                isLoading = false
+            }
         }
     }
 }

@@ -18,6 +18,7 @@
 		AD265CF729D9465600395E64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD265CCD29D9416F00395E64 /* ContentView.swift */; };
 		AD2A55CD29F2AF1100E9AA82 /* loadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2A55CC29F2AF1100E9AA82 /* loadView.swift */; };
 		AD2A55CE29F2AF1100E9AA82 /* loadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2A55CC29F2AF1100E9AA82 /* loadView.swift */; };
+		AD2A55D029F2B52E00E9AA82 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = AD2A55CF29F2B52E00E9AA82 /* ReadMe.md */; };
 		AD51FC3F29F1729F00B08B4B /* defaultItem.json in Resources */ = {isa = PBXBuildFile; fileRef = AD51FC3E29F16EC900B08B4B /* defaultItem.json */; };
 		AD5EAE4C29E6D7E400FDB5C1 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EAE4B29E6D7E400FDB5C1 /* ItemDetailView.swift */; };
 		AD5EAE5029E6DC0900FDB5C1 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5EAE4F29E6DC0900FDB5C1 /* ChecklistViewModel.swift */; };
@@ -74,6 +75,7 @@
 		AD265CE729D9417100395E64 /* A1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A1UITests.swift; sourceTree = "<group>"; };
 		AD265CE929D9417100395E64 /* A1UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A1UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		AD2A55CC29F2AF1100E9AA82 /* loadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loadView.swift; sourceTree = "<group>"; };
+		AD2A55CF29F2B52E00E9AA82 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		AD51FC3E29F16EC900B08B4B /* defaultItem.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = defaultItem.json; sourceTree = "<group>"; };
 		AD5EAE4B29E6D7E400FDB5C1 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		AD5EAE4F29E6DC0900FDB5C1 /* ChecklistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewModel.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				AD265CCF29D9417100395E64 /* Assets.xcassets */,
 				AD265CD129D9417100395E64 /* A1.entitlements */,
 				AD265CD229D9417100395E64 /* Preview Content */,
+				AD2A55CF29F2B52E00E9AA82 /* ReadMe.md */,
 			);
 			path = A1;
 			sourceTree = SOURCE_ROOT;
@@ -357,6 +360,7 @@
 			files = (
 				AD51FC3F29F1729F00B08B4B /* defaultItem.json in Resources */,
 				AD265CD429D9417100395E64 /* Preview Assets.xcassets in Resources */,
+				AD2A55D029F2B52E00E9AA82 /* ReadMe.md in Resources */,
 				AD265CD029D9417100395E64 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
