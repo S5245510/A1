@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    // define that this view use the logic in ChecklistViewModel as viewModel
     @ObservedObject var viewModel = ChecklistViewModel()
+   // set the default view is not editMode
     @State var isEditMode = false
     @State var checklistTitle = "Today routine"
     @State var editTitle = ""
@@ -16,17 +18,22 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
+                // use ForEach to display all the items in array
                 ForEach(viewModel.items, id: \.id) { item in
                     NavigationLink(
+                        // pass the view to the corresponding item detail view
                         destination: ItemDetailView(viewModel: viewModel, item: item)) {
                         HStack {
+                            //Checklist item can be editted when edit mode is on
                             if isEditMode{
                                 TextField("Item Name", text: $viewModel.items[viewModel.items.firstIndex(of: item)!].name)
                                     .font(.headline)
                                     .foregroundColor(.primary)
+                                // checkmark status can be edited
                                 Toggle("", isOn: $viewModel.items[viewModel.items.firstIndex(of: item)!].isChecked)
                                 .labelsHidden()
                             }else {
+                                // when edit mode off
                                 Text(item.name)
                                 Spacer()
                                 Image(systemName: item.isChecked ? "checkmark" : "")
@@ -34,11 +41,14 @@ struct ContentView: View {
                         }
                     }
                 }
+                // delete items
                 .onDelete(perform: viewModel.deleteItems)
+                // re-ordering items
                 .onMove(perform: viewModel.moveItems)
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
+                    // to change the title of the checklist aacording to the edit mode
                     if isEditMode {
                         TextField("Edit title here", text: $editTitle)
                             .font(.headline)
@@ -58,6 +68,7 @@ struct ContentView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    // Reset, add items and Edit mode buttons
                     if isEditMode {
                         Button(action: {viewModel.resetCheck()}) {
                             Text("Reset")
@@ -74,8 +85,10 @@ struct ContentView: View {
                     }
                 }
             }
+            // to set edit mode environment variable
             .environment(\.editMode, isEditMode ? .constant(.active) : .constant(.inactive))
         }
+        // will load items every time this view present
         .onAppear {
             viewModel.loadItems()
         }

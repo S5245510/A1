@@ -26,7 +26,9 @@ struct ItemDetailView: View {
     }
     
     var body: some View {
+        // some formatting to show title in middle
         VStack(alignment: .center, spacing: 20) {
+            // show different displays according to edit mode
             if isEditMode{
                 TextField("Item Name", text: $itemName)
                     .font(.title)
@@ -62,12 +64,14 @@ struct ItemDetailView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
+                    // edit mode button
                     isEditMode.toggle()
                 }) {
                     Text(isEditMode ? "Done" : "Edit")
                 }
             }
         }
+        // pass all the updated value to items by using defined funcs
         .onChange(of: isEditMode) { value in
             if !value {
                 viewModel.editItems(item: item, name: itemName)

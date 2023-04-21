@@ -8,6 +8,7 @@
 import Foundation
 
 class ChecklistViewModel: ObservableObject {
+    // default 4 items when the app first builded
     @Published var items: [ChecklistItem] = [
         ChecklistItem(name: "Buy groceries", isChecked: true, detail: "Rice, Milk, Egg"),
         ChecklistItem(name: "Study", isChecked: true, detail: "Revision"),
@@ -15,31 +16,32 @@ class ChecklistViewModel: ObservableObject {
         ChecklistItem(name: "Exercise", isChecked: false, detail: "Go for a gym")
     ]
     
+    // to add items in checklist
     func addItems() {
         let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
         items.append(newItem)
         saveItems()
     }
-        
+      // to delete items in checklist by passing the index
     func deleteItems(at offsets: IndexSet) {
         items.remove(atOffsets: offsets)
         saveItems()
     }
-    
+    // edit item names in checklist
     func editItems(item: ChecklistItem, name: String) {
         if let index = items.firstIndex(of: item) {
             items[index].name = name
             saveItems()
         }
     }
-    
+    // edit details of items
     func editDetails(item: ChecklistItem, detail: String) {
         if let index = items.firstIndex(of: item) {
             items[index].detail = detail
             saveItems()
         }
     }
-    
+    // reset all checkmark bool to false
     func resetCheck() {
         items = items.map { item in
             ChecklistItem(
@@ -52,13 +54,14 @@ class ChecklistViewModel: ObservableObject {
         saveItems()
     }
     
+    // re-ordering
     func moveItems(from source: IndexSet, to destination: Int) {
         items.move(fromOffsets: source, toOffset: destination)
         saveItems()
     }
 
 
-    
+    // all above func will use this to save and update to json file
     func saveItems() {
         guard let url = getFile() else { return }
         do {
@@ -71,7 +74,7 @@ class ChecklistViewModel: ObservableObject {
     
     
 
-
+     // get item data from json if there is one found
      func loadItems() {
         guard let url = getFile() else {
             return
@@ -86,12 +89,17 @@ class ChecklistViewModel: ObservableObject {
         }
     }
     
+    
+    // when
     private func getFile() -> URL? {
+        // the json file name
         let filename = "checklist.json"
+        // to allow to access directory
         let fm = FileManager.default
         guard let url = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
+        // to create a url to the file
         return url.appendingPathComponent(filename)
     }
 }
