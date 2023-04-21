@@ -10,12 +10,24 @@ import XCTest
 
 final class A1Testsnew: XCTestCase {
     
+    var viewModel: ChecklistViewModel!
+    
+    override func setUp() {
+            super.setUp()
+            viewModel = ChecklistViewModel()
+        }
+
+        override func tearDown() {
+            viewModel = nil
+            super.tearDown()
+        }
+    
     func testAddItem() {
         
         let viewModel = ChecklistViewModel()
         let initialCount = viewModel.items.count
         
-        viewModel.addItem()
+        viewModel.addItems()
         
         XCTAssertEqual(viewModel.items.count, initialCount + 1)
     }
@@ -48,6 +60,8 @@ final class A1Testsnew: XCTestCase {
 
         XCTAssertNotNil(itemDetailView)
     }
+    
+    
 
 
     override func setUpWithError() throws {
