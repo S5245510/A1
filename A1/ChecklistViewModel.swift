@@ -16,6 +16,8 @@ class ChecklistViewModel: ObservableObject {
         ChecklistItem(name: "Exercise", isChecked: false, detail: "Go for a gym")
     ]
     
+    @Published var isLoading = false
+    
     // to add items in checklist
     func addItems() {
         let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
@@ -76,6 +78,7 @@ class ChecklistViewModel: ObservableObject {
 
      // get item data from json if there is one found
      func loadItems() {
+        isLoading = true
         guard let url = getFile() else {
             return
         }
@@ -87,6 +90,7 @@ class ChecklistViewModel: ObservableObject {
         } catch {
             print("Failed to load items: \(error.localizedDescription)")
         }
+         isLoading = false
     }
     
     
