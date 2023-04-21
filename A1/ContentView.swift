@@ -35,6 +35,7 @@ struct ContentView: View {
                     }
                 }
                 .onDelete(perform: viewModel.deleteItems)
+                .onMove(perform: viewModel.moveItems)
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -63,7 +64,7 @@ struct ContentView: View {
                         }
                     }
                     Button(action:{
-                        viewModel.addItem()
+                        viewModel.addItems()
                     }){
                         Image(systemName: "plus")
                     }

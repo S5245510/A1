@@ -15,7 +15,7 @@ class ChecklistViewModel: ObservableObject {
         ChecklistItem(name: "Exercise", isChecked: false, detail: "Go for a gym")
     ]
     
-    func addItem() {
+    func addItems() {
         let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
         items.append(newItem)
         saveItems()
@@ -26,14 +26,14 @@ class ChecklistViewModel: ObservableObject {
         saveItems()
     }
     
-    func editItem(item: ChecklistItem, name: String) {
+    func editItems(item: ChecklistItem, name: String) {
         if let index = items.firstIndex(of: item) {
             items[index].name = name
             saveItems()
         }
     }
     
-    func editDetail(item: ChecklistItem, detail: String) {
+    func editDetails(item: ChecklistItem, detail: String) {
         if let index = items.firstIndex(of: item) {
             items[index].detail = detail
             saveItems()
@@ -51,6 +51,12 @@ class ChecklistViewModel: ObservableObject {
         }
         saveItems()
     }
+    
+    func moveItems(from source: IndexSet, to destination: Int) {
+        items.move(fromOffsets: source, toOffset: destination)
+        saveItems()
+    }
+
 
     
     func saveItems() {

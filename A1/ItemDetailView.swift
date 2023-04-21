@@ -70,8 +70,8 @@ struct ItemDetailView: View {
         }
         .onChange(of: isEditMode) { value in
             if !value {
-                viewModel.editItem(item: item, name: itemName)
-                viewModel.editDetail(item: item, detail: itemDetails)
+                viewModel.editItems(item: item, name: itemName)
+                viewModel.editDetails(item: item, detail: itemDetails)
             }
         }
     }
