@@ -61,7 +61,37 @@ final class A1Testsnew: XCTestCase {
         XCTAssertNotNil(itemDetailView)
     }
     
+    func testResetCheck() {
+        let initialCheckmarks = viewModel.items.map({ $0.isChecked })
+        viewModel.resetCheck()
+        let resetCheckmarks = viewModel.items.map({ $0.isChecked })
+        XCTAssertNotEqual(initialCheckmarks, resetCheckmarks)
+        XCTAssertEqual(resetCheckmarks, [false, false, false, false])
+    }
     
+    func testDefaultItems() {
+        XCTAssertEqual(viewModel.items.count, 4)
+        XCTAssertEqual(viewModel.items.first?.name, "Buy groceries")
+        XCTAssertEqual(viewModel.items.last?.name, "Exercise")
+    }
+    
+    func testSwipeToDelete() {
+        let initialItemCount = viewModel.items.count
+        viewModel.deleteItems(at: IndexSet(integer: 0))
+        XCTAssertEqual(viewModel.items.count, initialItemCount - 1)
+    }
+    
+    func testSaveAndLoad() {
+        let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
+        viewModel.items.append(newItem)
+        viewModel.saveItems()
+        
+        let newViewModel = ChecklistViewModel()
+        newViewModel.loadItems()
+        XCTAssertEqual(newViewModel.items.count, 5)
+        XCTAssertEqual(newViewModel.items.last?.name, "New routine")
+    }
+
 
 
     override func setUpWithError() throws {
