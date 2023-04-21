@@ -8,7 +8,12 @@
 import Foundation
 
 class ChecklistViewModel: ObservableObject {
-    @Published var items: [ChecklistItem] = []
+    @Published var items: [ChecklistItem] = [
+        ChecklistItem(name: "Buy groceries", isChecked: true, detail: "Rice, Milk, Egg"),
+        ChecklistItem(name: "Study", isChecked: true, detail: "Revision"),
+        ChecklistItem(name: "Clean house", isChecked: false, detail: "Sweep floors"),
+        ChecklistItem(name: "Exercise", isChecked: false, detail: "Go for a gym")
+    ]
     
     func addItem() {
         let newItem = ChecklistItem(name: "New routine", isChecked: false, detail: "routine detail")
@@ -35,6 +40,19 @@ class ChecklistViewModel: ObservableObject {
         }
     }
     
+    func resetCheck() {
+        items = items.map { item in
+            ChecklistItem(
+                id: item.id,
+                name: item.name,
+                isChecked: false,
+                detail: item.detail
+            )
+        }
+        saveItems()
+    }
+
+    
     func saveItems() {
         guard let url = getFile() else { return }
         do {
@@ -46,10 +64,10 @@ class ChecklistViewModel: ObservableObject {
     }
     
     
-    func loadItems() {
+
+
+     func loadItems() {
         guard let url = getFile() else {
-            loadDefaultItems()
-            saveItems()
             return
         }
         
@@ -58,27 +76,14 @@ class ChecklistViewModel: ObservableObject {
             let loadedItems = try JSONDecoder().decode([ChecklistItem].self, from: data)
             items = loadedItems
         } catch {
-            loadDefaultItems()
-            saveItems()
+            print("Failed to load items: \(error.localizedDescription)")
         }
-    }
-
-
-    private func loadDefaultItems() {
-        guard let url = Bundle.main.url(forResource: "defaultItem", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let defaultItems = try? JSONDecoder().decode([ChecklistItem].self, from: data)
-        else {
-            print("Failed to load default items")
-            return
-        }
-        items = defaultItems
     }
     
     private func getFile() -> URL? {
         let filename = "checklist.json"
         let fm = FileManager.default
-        guard let url = fm.urls(for: .documentDirectory, in: FileManager.SearchPathDomainMask.allDomainsMask).first else {
+        guard let url = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
             return nil
         }
         return url.appendingPathComponent(filename)

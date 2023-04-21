@@ -57,13 +57,19 @@ struct ContentView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: { isEditMode.toggle() }) {
-                        Text(isEditMode ? "Done" : "Edit")
+                    if isEditMode {
+                        Button(action: {viewModel.resetCheck()}) {
+                            Text("Reset")
+                        }
                     }
                     Button(action:{
                         viewModel.addItem()
                     }){
                         Image(systemName: "plus")
+                    }
+                    Button(action: { isEditMode.toggle() }) {
+                    Text(isEditMode ? "Done" : "Edit")
+                    
                     }
                 }
             }
